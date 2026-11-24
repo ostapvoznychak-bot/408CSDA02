@@ -13,5 +13,3 @@ git status --ignored --short
 
 ## Запуск програми
 .venv/bin/hello (Windows: .venv\Scripts\hello.exe)
-
-[Після виконання /init замінити цей розділ точними командами й виводом, які були використані.]
