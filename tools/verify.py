@@ -44,6 +44,6 @@ workflow_path = ROOT / ".github/workflows/ci.yml"
 workflow = workflow_path.read_text(encoding="utf-8") if workflow_path.is_file() else ""
 for os_name in ("ubuntu-latest", "windows-latest", "macos-latest"):
     results.append(check(f"{os_name} in CI", os_name in workflow))
-results.append(check("CI delegates to build scripts", "./ci.sh" in workflow and "ci.bat" in workflow))
+results.append(check("CI delegates to build scripts", "bash ci.sh" in workflow and "ci.bat" in workflow))
 
 sys.exit(0 if all(results) else 1)

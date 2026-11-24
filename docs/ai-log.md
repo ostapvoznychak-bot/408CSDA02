@@ -6,3 +6,7 @@
 | 2 | `/check` | `tools/verify.py` пройшов усі перевірки; окремий `test_BasicAddition` passed; повна збірка `ci.bat` passed | Перший повторний запуск збірки мав помилку формування команди оболонки | Повторний запуск виконано через коректний виклик `.\\ci.bat` |
 
 Щонайменше одна помилка та її виправлення через зміну інструкцій агента (не ручною правкою результату).
+
+## Помилка та виправлення
+
+На `ubuntu-latest` та `macos-latest` CI падав на `Permission denied`, тому що `ci.sh` був закомічений з режимом `100644`. Виправлення: у skill `build-and-test` додано обов’язкові команди `git update-index --chmod=+x ci.sh` та перевірку `git ls-files -s ci.sh`; у skill `github-actions` і `.github/workflows/ci.yml` запуск Unix-сценарію змінено з `bash ./ci.sh` на `bash ci.sh`. Також перевірка `tools/verify.py` тепер очікує саме `bash ci.sh`.

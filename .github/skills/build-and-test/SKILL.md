@@ -18,6 +18,7 @@ description: Налаштування складання (venv + скрипт з
 - `tests/test_core.py`: функція `test_BasicAddition` (`add(2, 3) == 5`) і ще щонайменше один тест (від'ємні числа).
 - `ci.sh` (bash, `set -euo pipefail`) і `ci.bat` (`setlocal`, перевірка `%ERRORLEVEL%` після кожної команди):
   1) `python -m venv .venv`; 2) `pip install -e ".[test]"`; 3) `python -m pytest -v`; 4) запуск `hello`.
+- Після створення `ci.sh` виконати `git update-index --chmod=+x ci.sh`, а потім перевірити режим командою `git ls-files -s ci.sh`; очікуваний Git mode — `100755`.
 - Скрипт перевірки `python tools/verify.py`: нічого не змінює; FAIL, якщо бракує файлів проєкту/агента, рядків `.venv/`, `__pycache__/` у `.gitignore`, однієї з трьох ОС у `ci.yml` або якщо `ci.yml` містить власні команди складання; друкує PASS/FAIL на кожен пункт.
 
 # Перевірка
