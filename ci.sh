@@ -4,4 +4,4 @@ set -euo pipefail
 python -m venv .venv
 .venv/bin/python -m pip install -e ".[test]"
 .venv/bin/python -m pytest -v
-hello
+.venv/bin/hello

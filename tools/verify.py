@@ -46,4 +46,7 @@ for os_name in ("ubuntu-latest", "windows-latest", "macos-latest"):
     results.append(check(f"{os_name} in CI", os_name in workflow))
 results.append(check("CI delegates to build scripts", "bash ci.sh" in workflow and "ci.bat" in workflow))
 
+ci_sh = (ROOT / "ci.sh").read_text(encoding="utf-8") if (ROOT / "ci.sh").is_file() else ""
+results.append(check("ci.sh uses the virtualenv hello executable", ".venv/bin/hello" in ci_sh))
+
 sys.exit(0 if all(results) else 1)
